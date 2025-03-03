@@ -1,13 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FaTrash, FaArrowUp, FaArrowDown, FaCheck, FaEdit } from "react-icons/fa";
 import "./TaskManager.css"; 
 
 function TaskManager() {
-    const [tasks, setTasks] = useState(() => JSON.parse(localStorage.getItem("tasks")) || []);
+    const [tasks, setTasks] = useState(() => {
+        return JSON.parse(localStorage.getItem("tasks")) || [];
+    });
+
     const [taskInput, setTaskInput] = useState("");
     const [editingIndex, setEditingIndex] = useState(null);
-    const [editingText, setEditingText] = useState("");
-    const editInputRef = useRef(null);
+    const [editingText, setEditingText] = useState(""); // Temporary state to store text while editing
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -21,9 +23,7 @@ function TaskManager() {
     }
 
     function handleRemoveTask(index) {
-        if (window.confirm("Are you sure you want to delete this task?")) {
-            setTasks(tasks.filter((_, i) => i !== index));
-        }
+        setTasks(tasks.filter((_, i) => i !== index));
     }
 
     function handleToggleComplete(index) {
@@ -50,17 +50,16 @@ function TaskManager() {
 
     function handleEditTask(index) {
         setEditingIndex(index);
-        setEditingText(tasks[index].text);
-        setTimeout(() => editInputRef.current?.focus(), 0);
+        setEditingText(tasks[index].text); // Load the current text into temporary state
     }
 
     function handleSaveEdit(index) {
-        if (editingText.trim() === "") return;
+        if (editingText.trim() === "") return; // Prevent empty tasks
         const updatedTasks = tasks.map((task, i) =>
             i === index ? { ...task, text: editingText } : task
         );
         setTasks(updatedTasks);
-        setEditingIndex(null);
+        setEditingIndex(null); // Exit edit mode
     }
 
     return (
@@ -75,9 +74,8 @@ function TaskManager() {
                     placeholder="Enter task..."
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === "Enter") handleAddTask(); }}
                 />
-                <button className="add-task-btn" onClick={handleAddTask} disabled={taskInput.trim() === ""}>
+                <button className="add-task-btn" onClick={handleAddTask}>
                     Add Task
                 </button>
             </div>
@@ -89,13 +87,11 @@ function TaskManager() {
                             <input
                                 type="text"
                                 className="edit-task-input"
-                                ref={editInputRef}
                                 value={editingText}
                                 onChange={(e) => setEditingText(e.target.value)}
-                                onBlur={() => handleSaveEdit(index)}
-                                onKeyDown={(e) => { 
-                                    if (e.key === "Enter") handleSaveEdit(index); 
-                                    if (e.key === "Escape") setEditingIndex(null);  
+                                onBlur={() => handleSaveEdit(index)} // Save when user clicks away
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") handleSaveEdit(index); // Save on Enter
                                 }}
                                 autoFocus
                             />
