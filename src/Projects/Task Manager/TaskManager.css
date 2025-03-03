@@ -26,6 +26,36 @@
     margin-bottom: 20px;
 }
 
+/* 🎯 Search Bar */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
 .task-input {
     flex: 1;
     padding: 10px;
@@ -100,6 +130,7 @@
     gap: 5px;
 }
 
+/* 🎯 Buttons */
 button {
     border: none;
     cursor: pointer;
@@ -107,9 +138,33 @@ button {
     border-radius: 4px;
     font-size: 14px;
     transition: background-color 0.3s;
+    position: relative;
 }
 
-/* 🎨 Buttons with hover effects */
+/* 🎯 Tooltip Styles */
+button::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+button:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 🎯 Button Colors */
 .complete-btn {
     background-color: #4caf50;
     color: white;
@@ -162,13 +217,24 @@ button {
     background-color: #e0e0e0;
 }
 
+.category-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #222;
+}
+
+.category-select:focus, .category-select:active, .category-select:hover {
+    outline: none;
+}
+
 /* 🎯 Responsive Design */
 @media (max-width: 600px) {
     .task-manager {
         max-width: 90%;
     }
 
-    .input-container {
+    .input-container,
+    .search-container {
         flex-direction: column;
         gap: 5px;
     }
