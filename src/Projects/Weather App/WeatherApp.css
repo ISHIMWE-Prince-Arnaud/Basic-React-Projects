@@ -1,0 +1,94 @@
+/* App.css */
+
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main weather container */
+.weather-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title and subtitle styles */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.sub-title {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Weather display styles */
+.weather-display {
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-display h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.weather-info {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.message {
+  font-size: 1.1rem;
+  color: #888;
+}
+
+/* Search form and input styles */
+.search-form {
+  margin-bottom: 30px;
+}
+
+.input-field {
+  width: 90%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
