@@ -11,16 +11,24 @@ const WeatherDisplay = ({ weatherData }) => {
 
   return (
     <div className="weather-display">
-      <h2 className="city-name">{name}</h2>
-      {main && weather ? (
-        <>
-          <p className="weather-info">Temperature: {main.temp}°C</p>
-          <p className="weather-info">Weather: {weather[0].description}</p>
-          <p className="weather-info">Humidity: {main.humidity}%</p>
-        </>
-      ) : (
-        <p className="weather-info">Weather data is unavailable.</p>
-      )}
+      <div className="city-name">{name}</div>
+
+      {/* Weather info container */}
+      <div className="weather-info-container">
+        <div className="weather-icon">
+          {/* Add the weather icon here */}
+          <img src={`http://openweathermap.org/img/wn/${weather[0].icon}.png`} alt={weather[0].description} />
+        </div>
+
+        <div className="weather-info">
+          <div className="temperature">{main.temp}°C</div>
+          <div className="description">{weather[0].description}</div>
+          <div className="extra-info">
+            <p>Humidity: {main.humidity}%</p>
+            <p>Wind Speed: {weatherData.wind.speed} m/s</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
