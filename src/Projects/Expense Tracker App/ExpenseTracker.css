@@ -64,6 +64,8 @@ body {
 .btn-delete {
   background-color: #ff4d4d;
   color: white;
+  height: 5vh;
+  margin: auto 0;
 }
 
 .btn-delete:hover {
@@ -101,7 +103,7 @@ body {
   border: 1px solid #ddd;
 }
 
-.expense-description {
+.expense-item span {
   font-weight: bold;
   color: #333;
 }
